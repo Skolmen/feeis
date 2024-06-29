@@ -11,16 +11,32 @@
         <h1>Travel Money Calculator</h1>
         <div class="global-settings">
             <h2>Global Settings</h2>
-            <label for="currency-rate">1 SEK to EUR: </label>
-            <input type="number" id="currency-rate" step="0.001" value="0.088">
+            <div class="box-5">     
+                <label for="currency-rate">1 SEK to Local currency (LOC): </label>
+                <input type="number" id="currency-rate" step="0.001">
+            </div>
         </div>
         <div class="comparison">
             <h2>Compare Costs</h2>
-            <label for="amount-to-withdraw">Amount to Withdraw (SEK):</label>
-            <input type="number" id="amount-to-withdraw" value="">
-            <label for="weekday-checkbox">Weekday Withdrawal:</label>
-            <input type="checkbox" id="weekday-checkbox">
-            <button id="compare-costs">Compare</button>
+
+            <div class="box-1">
+                <div class="box-2">
+                    <label for="amount-to-withdraw">Amount to Exchange/Witdraw (LOC):</label>
+                    <input type="number" id="amount-to-withdraw" value="">
+                    <div class="box-2-1">
+                        <label for="weekday-checkbox">Weekday Exchange:</label>
+                        <input type="checkbox" id="weekday-checkbox">
+                    </div>
+                </div>
+                <div class="box-3">
+                    <label for="atm-fee-eur">ATM Fee in LOC:</label>
+                    <input type="number" id="atm-fee-loc" value="">
+                </div>
+            </div>
+            <div class="box-4">
+                <button id="compare-costs">Compare</button>
+                <button id="compare-exchange">Compare Exchange Only</button>
+            </div>
         </div>
         <div id="results-container">
             <h2>Results</h2>

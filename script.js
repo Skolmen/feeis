@@ -3,17 +3,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const addCardButton = document.getElementById('add-card');
     const currencyRateInput = document.getElementById('currency-rate');
     const compareCostsButton = document.getElementById('compare-costs');
+    const compareExchangeButton = document.getElementById('compare-exchange');
     const amountToWithdrawInput = document.getElementById('amount-to-withdraw');
     const weekdayCheckbox = document.getElementById('weekday-checkbox');
-    const resultsContainer = document.getElementById('results-container'); // New container for results
+    const atmFeeLocInput = document.getElementById('atm-fee-loc'); // New input field for ATM fee in LOC
+    const resultsContainer = document.getElementById('results-container');
 
-    // Load saved cards and settings from local storage
     loadCards();
     loadGlobalSettings();
 
     addCardButton.addEventListener('click', addCard);
     compareCostsButton.addEventListener('click', compareCosts);
-    currencyRateInput.addEventListener('change', saveGlobalSettings);
+    compareExchangeButton.addEventListener('click', compareExchange);
+    currencyRateInput.addEventListener('change', saveExchangeRate);
 
     function addCard() {
         const card = createCard();
@@ -68,38 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return card;
     }
 
-    function updateCardResults(card) {
-        const withdrawalFeeLow = parseFloat(card.querySelector('.withdrawal-fee-low').value);
-        const withdrawalFeeMin = parseFloat(card.querySelector('.withdrawal-fee-min').value);
-        const maxWithdrawalLow = parseFloat(card.querySelector('.max-withdrawal-low').value);
-        const withdrawalFeeHigh = parseFloat(card.querySelector('.withdrawal-fee-high').value);
-        const withdrawalFeeHighMin = parseFloat(card.querySelector('.withdrawal-fee-high-min').value);
-        const exchangeFeeLow = parseFloat(card.querySelector('.exchange-fee-low').value);
-        const maxExchangeLow = parseFloat(card.querySelector('.max-exchange-low').value);
-        const exchangeFeeHigh = parseFloat(card.querySelector('.exchange-fee-high').value);
-        const weekendFee = parseFloat(card.querySelector('.weekend-fee').value);
-        const withdrawnAmount = parseFloat(card.querySelector('.withdrawn-amount').value);
-        const exchangedAmount = parseFloat(card.querySelector('.exchanged-amount').value);
-
-        const amountToWithdraw = parseFloat(amountToWithdrawInput.value);
-        const isWeekday = weekdayCheckbox.checked;
-
-        const remainingWithdrawal = maxWithdrawalLow - withdrawnAmount;
-        const remainingExchange = maxExchangeLow - exchangedAmount;
-
-        const withdrawalCost = calculateWithdrawalCost(amountToWithdraw, withdrawalFeeLow, withdrawalFeeMin, maxWithdrawalLow, withdrawalFeeHigh, withdrawalFeeHighMin, remainingWithdrawal);
-        const exchangeCost = calculateExchangeCost(amountToWithdraw, exchangeFeeLow, maxExchangeLow, exchangeFeeHigh, remainingExchange);
-        const weekendCost = isWeekday ? 0 : (weekendFee / 100) * amountToWithdraw;
-
-        const totalCost = withdrawalCost + exchangeCost + weekendCost;
-        const amountInCurrency = totalCost / parseFloat(currencyRateInput.value);
-
-        card.querySelector('.withdrawal-fee-result').textContent = `${withdrawalCost.toFixed(2)} SEK`;
-        card.querySelector('.exchange-cost-result').textContent = `${exchangeCost.toFixed(2)} SEK`;
-        card.querySelector('.total-cost-result').textContent = `${totalCost.toFixed(2)} SEK`;
-        card.querySelector('.amount-in-currency').textContent = `${amountInCurrency.toFixed(2)} EUR`;
-    }
-
     function saveCards() {
         const cards = [];
         cardList.querySelectorAll('.card').forEach(card => {
@@ -142,13 +112,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    function saveGlobalSettings() {
+    function saveExchangeRate() {
         const currencyRate = parseFloat(currencyRateInput.value);
         localStorage.setItem('currencyRate', currencyRate);
-        // Update results when global settings change
-        cardList.querySelectorAll('.card').forEach(card => {
-            updateCardResults(card);
-        });
     }
 
     function loadGlobalSettings() {
@@ -157,9 +123,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function compareCosts() {
-        resultsContainer.innerHTML = '<h2>Results</h2>'; // Clear previous results
+        resultsContainer.innerHTML = '<h2>Results</h2>';
         const amountToWithdraw = parseFloat(amountToWithdrawInput.value);
-        const isWeekday = weekdayCheckbox.checked;
+        const atmFeeLoc = parseFloat(atmFeeLocInput.value);
 
         cardList.querySelectorAll('.card').forEach(card => {
             const cardName = card.querySelector('.card-name').value;
@@ -171,46 +137,136 @@ document.addEventListener('DOMContentLoaded', () => {
             const exchangeFeeLow = parseFloat(card.querySelector('.exchange-fee-low').value);
             const maxExchangeLow = parseFloat(card.querySelector('.max-exchange-low').value);
             const exchangeFeeHigh = parseFloat(card.querySelector('.exchange-fee-high').value);
-            const weekendFee = parseFloat(card.querySelector('.weekend-fee').value);
             const withdrawnAmount = parseFloat(card.querySelector('.withdrawn-amount').value);
             const exchangedAmount = parseFloat(card.querySelector('.exchanged-amount').value);
+            const weekendFee = parseFloat(card.querySelector('.weekend-fee').value);
+            const weekday = weekdayCheckbox.checked;
 
             const remainingWithdrawal = maxWithdrawalLow - withdrawnAmount;
             const remainingExchange = maxExchangeLow - exchangedAmount;
 
-            const withdrawalCost = calculateWithdrawalCost(amountToWithdraw, withdrawalFeeLow, withdrawalFeeMin, maxWithdrawalLow, withdrawalFeeHigh, withdrawalFeeHighMin, remainingWithdrawal);
-            const exchangeCost = calculateExchangeCost(amountToWithdraw, exchangeFeeLow, maxExchangeLow, exchangeFeeHigh, remainingExchange);
-            const weekendCost = !isWeekday ? 0 : (weekendFee / 100) * amountToWithdraw;
+            const atmFeeSek = atmFeeLoc / parseFloat(currencyRateInput.value); // Convert ATM fee to SEK
 
-            const totalCost = withdrawalCost + exchangeCost + weekendCost;
-            const amountInCurrency = (amountToWithdraw - withdrawalCost - exchangeCost) * parseFloat(currencyRateInput.value);
+            const amountToExchange = amountToWithdraw + atmFeeLoc;
+
+            const amountInSEK = amountToWithdraw / currencyRateInput.value;
+
+            const exchangeFee = calculateExchangeFee(amountToExchange, exchangeFeeLow, exchangeFeeHigh, remainingExchange, weekday, weekendFee);
+
+            const withdrawalFee = calculateWithdrawalFee(amountToWithdraw, withdrawalFeeLow, withdrawalFeeMin, withdrawalFeeHigh, withdrawalFeeHighMin, remainingWithdrawal);
+            
+            const totalWithdrawalFee = withdrawalFee[0] + withdrawalFee[1];
+
+            const totalCost = amountInSEK + totalWithdrawalFee + exchangeFee + atmFeeSek;
 
             const resultElement = document.createElement('div');
             resultElement.classList.add('result');
             resultElement.innerHTML = `
                 <h3>${cardName}</h3>
-                <p><strong>Withdrawal Fee:</strong> ${withdrawalCost.toFixed(2)} SEK</p>
-                <p><strong>Exchange Cost (SEK):</strong> ${exchangeCost.toFixed(2)} SEK</p>
+                <p><strong>Amount in SEK:</strong> ${amountInSEK.toFixed(2)} SEK</p>
+                <p><strong>Withdrawal Fee (SEK):</strong> ${totalWithdrawalFee.toFixed(2)} SEK</p>
+                <p><strong>Withdrawal Fee Low (SEK):</strong> ${withdrawalFee[0].toFixed(2)} SEK</p>
+                <p><strong>Withdrawal Fee High (SEK):</strong> ${withdrawalFee[1].toFixed(2)} SEK</p>
+                <p><strong>Exchange Fee (SEK):</strong> ${exchangeFee.toFixed(2)} SEK</p>
+                <p><strong>ATM Fee (SEK):</strong> ${atmFeeSek.toFixed(2)} SEK</p>
                 <p><strong>Total Cost (SEK):</strong> ${totalCost.toFixed(2)} SEK</p>
-                <p><strong>Amount in Currency:</strong> ${amountInCurrency.toFixed(2)} EUR</p>
+                <p><strong>Amount in local currency:</strong> ${amountToWithdraw.toFixed(2)} LOC</p>
             `;
             resultsContainer.appendChild(resultElement);
         });
     }
 
-    function calculateWithdrawalCost(amount, feeLow, feeMin, maxLow, feeHigh, feeHighMin, remaining) {
-        if (amount <= remaining) {
-            return Math.max(amount * feeLow / 100, feeMin);
-        } else {
-            return Math.max(amount * feeHigh / 100, feeHighMin);
-        }
+    function compareExchange() {
+        resultsContainer.innerHTML = '<h2>Exchange Only Results</h2>';
+        const amountToExchange = parseFloat(amountToWithdrawInput.value);
+
+        cardList.querySelectorAll('.card').forEach(card => {
+            const cardName = card.querySelector('.card-name').value;
+            const exchangeFeeLow = parseFloat(card.querySelector('.exchange-fee-low').value);
+            const maxExchangeLow = parseFloat(card.querySelector('.max-exchange-low').value);
+            const exchangeFeeHigh = parseFloat(card.querySelector('.exchange-fee-high').value);
+            const exchangedAmount = parseFloat(card.querySelector('.exchanged-amount').value);
+            const weekendFee = parseFloat(card.querySelector('.weekend-fee').value);
+            const weekday = weekdayCheckbox.checked;
+
+            const remainingExchange = maxExchangeLow - exchangedAmount;
+
+            const exchangeFee = calculateExchangeFee(amountToExchange, exchangeFeeLow, exchangeFeeHigh, remainingExchange, weekday, weekendFee);
+
+            const amountInSEK = amountToExchange / currencyRateInput.value;
+
+            const exchangeCost = exchangeFee + amountInSEK;
+
+            const resultElement = document.createElement('div');
+            resultElement.classList.add('result');
+            resultElement.innerHTML = `
+                <h3>${cardName}</h3>
+                <p><strong>Amount in SEK:</strong> ${amountInSEK.toFixed(2)} SEK</p>
+                <p><strong>Exchange Fee:</strong> ${exchangeFee.toFixed(2)} SEK</p>
+                <p><strong>Cost in (SEK):</strong> ${exchangeCost.toFixed(2)} SEK</p>
+                <p><strong>Amount in Currency:</strong> ${amountToExchange.toFixed(2)} LOC</p>
+            `;
+            resultsContainer.appendChild(resultElement);
+        });
     }
 
-    function calculateExchangeCost(amount, feeLow, maxLow, feeHigh, remaining) {
-        if (amount <= remaining) {
-            return amount * feeLow / 100;
-        } else {
-            return amount * feeHigh / 100;
+    function calculateWithdrawalFee(amount, feeLow, feeMin, feeHigh, feeHighMin, remaining) {
+        let lowFee = 0;
+        let highFee = 0;
+    
+        let amountInSEK = amount / currencyRateInput.value;
+
+        // Convert percentage fees to fractions
+        feeLow /= 100;
+        feeHigh /= 100;
+
+        // Calculate withdrawal fee for the remaining amount using low fee
+        if (remaining > 0) {
+            const lowFeeAmount = Math.min(amountInSEK, remaining);
+            lowFee = lowFeeAmount * feeLow;
+            lowFee = Math.max(lowFee, feeMin);
+            amountInSEK -= lowFeeAmount;
         }
+
+        // Calculate withdrawal fee for the remaining amount using high fee
+        if (amountInSEK > 0) {
+            highFee = amountInSEK * feeHigh;
+            highFee = Math.max(highFee, feeHighMin);
+        }
+    
+        return [lowFee, highFee];
+    }
+
+    function calculateExchangeFee(amountToExchange, exchangeFeeLow, exchangeFeeHigh, remainingExchange, isWeekday, weekendFee) {
+        // Convert amount to exchange from local currency to SEK (assuming SEK is the target currency)
+        let amountInSEK = amountToExchange / currencyRateInput.value;
+        
+        let exchangeFee = 0;
+    
+        // Convert percentage fees to fractions
+        exchangeFeeLow /= 100;
+        exchangeFeeHigh /= 100;
+        weekendFee /= 100;
+    
+        // Apply weekday/weekend fee adjustment
+        if (isWeekday) {
+            // It's a weekend (assuming weekday is a boolean where false means weekend)
+            exchangeFee += amountInSEK * weekendFee;
+        }
+
+        // Calculate exchange fee for the remaining exchange using low fee
+        if (remainingExchange > 0) {
+            const lowFeeAmount = Math.min(amountInSEK, remainingExchange);
+            exchangeFee += lowFeeAmount * exchangeFeeLow;
+            amountInSEK -= lowFeeAmount;
+        }
+
+        // Calculate exchange fee for the remaining amount using high fee
+        if (amountInSEK > 0) {
+            exchangeFee += amountInSEK * exchangeFeeHigh;
+        }
+
+        // Return the calculated exchange cost
+        return exchangeFee;
     }
 });
