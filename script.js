@@ -34,6 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
             <td><input type="number" class="max-exchange-low" value="${data.maxExchangeLow || 0}"></td>
             <td><input type="number" class="exchange-fee-high" value="${data.exchangeFeeHigh || 0}"></td>
             <td><input type="number" class="weekend-fee" value="${data.weekendFee || 0}"></td>
+            <td><input type="number" class="withdrawn-amount" value="${data.withdrawnAmount || 0}"></td>
+            <td><input type="number" class="exchanged-amount" value="${data.exchangedAmount || 0}"></td>
             <td class="card-actions"><button class="remove-card">Remove</button></td>
         `;
 
@@ -61,6 +63,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const maxExchangeLow = parseFloat(cardRow.querySelector('.max-exchange-low').value);
             const exchangeFeeHigh = parseFloat(cardRow.querySelector('.exchange-fee-high').value);
             const weekendFee = parseFloat(cardRow.querySelector('.weekend-fee').value);
+            const withdrawnAmount = parseFloat(cardRow.querySelector('.withdrawn-amount').value);
+            const exchangedAmount = parseFloat(cardRow.querySelector('.exchanged-amount').value);
 
             cards.push({
                 name,
@@ -73,6 +77,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 maxExchangeLow,
                 exchangeFeeHigh,
                 weekendFee,
+                withdrawnAmount,
+                exchangedAmount,
             });
         });
         localStorage.setItem('cards', JSON.stringify(cards));
@@ -113,10 +119,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const maxExchangeLow = parseFloat(cardRow.querySelector('.max-exchange-low').value);
             const exchangeFeeHigh = parseFloat(cardRow.querySelector('.exchange-fee-high').value);
             const weekendFee = parseFloat(cardRow.querySelector('.weekend-fee').value);
+            const withdrawnAmount = parseFloat(cardRow.querySelector('.withdrawn-amount').value);
+            const exchangedAmount = parseFloat(cardRow.querySelector('.exchanged-amount').value);
 
-            // Calculate costs based on user inputs
-            const withdrawalCost = calculateWithdrawalCost(amountToWithdraw, withdrawalFeeLow, withdrawalFeeMin, maxWithdrawalLow, withdrawalFeeHigh, withdrawalFeeHighMin);
-            const exchangeCost = calculateExchangeCost(amountToWithdraw, exchangeFeeLow, maxExchangeLow, exchangeFeeHigh);
+            const remainingWithdrawal = maxWithdrawalLow - withdrawnAmount;
+            const remainingExchange = maxExchangeLow - exchangedAmount;
+
+            // Calculate costs based on user inputs and remaining limits
+            const withdrawalCost = calculateWithdrawalCost(amountToWithdraw, withdrawalFeeLow, withdrawalFeeMin, remainingWithdrawal, withdrawalFeeHigh, withdrawalFeeHighMin);
+            const exchangeCost = calculateExchangeCost(amountToWithdraw, exchangeFeeLow, remainingExchange, exchangeFeeHigh);
             const totalCost = !isWeekday ? withdrawalCost + exchangeCost : withdrawalCost + (weekendFee / 100 * amountToWithdraw);
 
             console.log(`Card: ${cardName}, Total Cost: ${totalCost.toFixed(2)} SEK`);
