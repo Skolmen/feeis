@@ -249,7 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         let highFee = 0;
         let lowFee = 0;
-        let weekendFee = 0;
+        let weekendTotFee = 0;
     
         // Convert percentage fees to fractions
         exchangeFeeLow /= 100;
@@ -259,7 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Apply weekday/weekend fee adjustment
         if (isWeekday) {
             // It's a weekend (assuming weekday is a boolean where false means weekend)
-            weekendFee = amountInSEK * weekendFee;
+            weekendTotFee = amountInSEK * weekendFee;
         }
 
         // Calculate exchange fee for the remaining exchange using low fee
@@ -275,6 +275,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Return the calculated exchange cost
-        return [lowFee, highFee, weekendFee];
+        return [lowFee, highFee, weekendTotFee];
     }
 });
