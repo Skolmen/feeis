@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const totalWithdrawalFee = withdrawalFee[0] + withdrawalFee[1];
 
-            const totalCost = amountInSEK + totalWithdrawalFee + exchangeFee + atmFeeSek;
+            const totalCost = amountInSEK + totalWithdrawalFee + exchangeFee[0] + exchangeFee[1] + exchangeFee[2] + atmFeeSek;
 
             const resultElement = document.createElement('div');
             resultElement.classList.add('result');
@@ -168,6 +168,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p><strong>Withdrawal Fee Low (SEK):</strong> ${withdrawalFee[0].toFixed(2)} SEK</p>
                 <p><strong>Withdrawal Fee High (SEK):</strong> ${withdrawalFee[1].toFixed(2)} SEK</p>
                 <p><strong>Exchange Fee (SEK):</strong> ${exchangeFee.toFixed(2)} SEK</p>
+                <p><strong>Exchange Fee Low (SEK):</strong> ${exchangeFee[0].toFixed(2)} SEK</p>
+                <p><strong>Exchange Fee High (SEK):</strong> ${exchangeFee[1].toFixed(2)} SEK</p>
+                <p><strong>Weekend Fee (SEK):</strong> ${exchangeFee[2].toFixed(2)} SEK</p>
                 <p><strong>ATM Fee (SEK):</strong> ${atmFeeSek.toFixed(2)} SEK</p>
                 <p><strong>Total Cost (SEK):</strong> ${totalCost.toFixed(2)} SEK</p>
                 <p><strong>Amount in local currency:</strong> ${amountToWithdraw.toFixed(2)} LOC</p>
@@ -195,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const amountInSEK = amountToExchange / currencyRateInput.value;
 
-            const exchangeCost = exchangeFee + amountInSEK;
+            const exchangeCost = exchangeFee[0] + exchangeFee[1] + exchangeFee[2] + amountInSEK;
 
             const resultElement = document.createElement('div');
             resultElement.classList.add('result');
@@ -203,6 +206,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 <h3>${cardName}</h3>
                 <p><strong>Amount in SEK:</strong> ${amountInSEK.toFixed(2)} SEK</p>
                 <p><strong>Exchange Fee:</strong> ${exchangeFee.toFixed(2)} SEK</p>
+                <p><strong>Exchange Fee Low:</strong> ${exchangeFee[0].toFixed(2)} SEK</p>
+                <p><strong>Exchange Fee High:</strong> ${exchangeFee[1].toFixed(2)} SEK</p>
+                <p><strong>Weekend Fee:</strong> ${exchangeFee[2].toFixed(2)} SEK</p>
                 <p><strong>Cost in (SEK):</strong> ${exchangeCost.toFixed(2)} SEK</p>
                 <p><strong>Amount in Currency:</strong> ${amountToExchange.toFixed(2)} LOC</p>
             `;
@@ -241,7 +247,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Convert amount to exchange from local currency to SEK (assuming SEK is the target currency)
         let amountInSEK = amountToExchange / currencyRateInput.value;
         
-        let exchangeFee = 0;
+        let highFee = 0;
+        let lowFee = 0;
+        let weekendFee = 0;
     
         // Convert percentage fees to fractions
         exchangeFeeLow /= 100;
@@ -251,22 +259,22 @@ document.addEventListener('DOMContentLoaded', () => {
         // Apply weekday/weekend fee adjustment
         if (isWeekday) {
             // It's a weekend (assuming weekday is a boolean where false means weekend)
-            exchangeFee += amountInSEK * weekendFee;
+            weekendFee = amountInSEK * weekendFee;
         }
 
         // Calculate exchange fee for the remaining exchange using low fee
         if (remainingExchange > 0) {
             const lowFeeAmount = Math.min(amountInSEK, remainingExchange);
-            exchangeFee += lowFeeAmount * exchangeFeeLow;
+            lowFee = lowFeeAmount * exchangeFeeLow;
             amountInSEK -= lowFeeAmount;
         }
 
         // Calculate exchange fee for the remaining amount using high fee
         if (amountInSEK > 0) {
-            exchangeFee += amountInSEK * exchangeFeeHigh;
+            highFee = amountInSEK * exchangeFeeHigh;
         }
 
         // Return the calculated exchange cost
-        return exchangeFee;
+        return [lowFee, highFee, weekendFee];
     }
 });
