@@ -167,12 +167,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 <h3>${cardName}</h3>
                 <p><strong>Amount in SEK:</strong> ${amountInSEK.toFixed(2)} SEK</p>
                 <p><strong>Withdrawal Fee (SEK):</strong> ${totalWithdrawalFee.toFixed(2)} SEK</p>
-                <p><strong>Withdrawal Fee Low (SEK):</strong> ${withdrawalFee[0].toFixed(2)} SEK</p>
-                <p><strong>Withdrawal Fee High (SEK):</strong> ${withdrawalFee[1].toFixed(2)} SEK</p>
+                <p>Withdrawal Fee Low (SEK): ${withdrawalFee[0].toFixed(2)} SEK</p>
+                <p>Withdrawal Fee High (SEK): ${withdrawalFee[1].toFixed(2)} SEK</p>
                 <p><strong>Exchange Fee (SEK):</strong> ${exchangeFeeTotal.toFixed(2)} SEK</p>
-                <p><strong>Exchange Fee Low (SEK):</strong> ${exchangeFee[0].toFixed(2)} SEK</p>
-                <p><strong>Exchange Fee High (SEK):</strong> ${exchangeFee[1].toFixed(2)} SEK</p>
-                <p><strong>Weekend Fee (SEK):</strong> ${exchangeFee[2].toFixed(2)} SEK</p>
+                <p>Exchange Fee Low (SEK): ${exchangeFee[0].toFixed(2)} SEK</p>
+                <p>Exchange Fee High (SEK): ${exchangeFee[1].toFixed(2)} SEK</p>
+                <p>Weekend Fee (SEK): ${exchangeFee[2].toFixed(2)} SEK</p>
                 <p><strong>ATM Fee (SEK):</strong> ${atmFeeSek.toFixed(2)} SEK</p>
                 <p><strong>Total Cost (SEK):</strong> ${totalCost.toFixed(2)} SEK</p>
                 <p><strong>Amount in local currency:</strong> ${amountToWithdraw.toFixed(2)} LOC</p>
@@ -210,9 +210,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 <h3>${cardName}</h3>
                 <p><strong>Amount in SEK:</strong> ${amountInSEK.toFixed(2)} SEK</p>
                 <p><strong>Exchange Fee:</strong> ${exchangeFeeTotal.toFixed(2)} SEK</p>
-                <p><strong>Exchange Fee Low:</strong> ${exchangeFee[0].toFixed(2)} SEK</p>
-                <p><strong>Exchange Fee High:</strong> ${exchangeFee[1].toFixed(2)} SEK</p>
-                <p><strong>Weekend Fee:</strong> ${exchangeFee[2].toFixed(2)} SEK</p>
+                <p>Exchange Fee Low:${exchangeFee[0].toFixed(2)} SEK</p>
+                <p>Exchange Fee High: ${exchangeFee[1].toFixed(2)} SEK</p>
+                <p>Weekend Fee: ${exchangeFee[2].toFixed(2)} SEK</p>
                 <p><strong>Cost in (SEK):</strong> ${exchangeCost.toFixed(2)} SEK</p>
                 <p><strong>Amount in Currency:</strong> ${amountToExchange.toFixed(2)} LOC</p>
             `;
