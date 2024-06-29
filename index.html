@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Money Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Travel Money Calculator</h1>
+        <div class="global-settings">
+            <h2>Global Settings</h2>
+            <label for="currency-rate">1 SEK to EUR: </label>
+            <input type="number" id="currency-rate" step="0.001" value="0.088">
+        </div>
+        <div class="cards">
+            <h2>Cards</h2>
+            <button id="add-card">Add Card</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Card Name</th>
+                        <th>Withdrawal Fee Low End (%)</th>
+                        <th>Withdrawal Fee Minimum (SEK)</th>
+                        <th>Max Withdrawal Low (SEK)</th>
+                        <th>Withdrawal Fee High End (%)</th>
+                        <th>Withdrawal Fee High Minimum (SEK)</th>
+                        <th>Exchange Fee Low End (%)</th>
+                        <th>Max Exchange Low End (SEK)</th>
+                        <th>Exchange Fee High End (%)</th>
+                        <th>Weekend Fee (%)</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="card-list"></tbody>
+            </table>
+        </div>
+        <div class="comparison">
+            <h2>Compare Costs</h2>
+            <label for="amount-to-withdraw">Amount to Withdraw (SEK):</label>
+            <input type="number" id="amount-to-withdraw" value="2000">
+            <label for="weekday-checkbox">Weekday Withdrawal:</label>
+            <input type="checkbox" id="weekday-checkbox" checked>
+            <button id="compare-costs">Compare</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
