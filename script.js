@@ -218,9 +218,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p><strong>Cost in (SEK):</strong> ${exchangeCost.toFixed(2)} SEK</p>
                 <p><strong>Total Fees:</strong> ${totalFees.toFixed(2)} SEK</p>
                 <p><strong>- Exchange Fee:</strong> ${exchangeFeeTotal.toFixed(2)} SEK</p>
-                <p>-- Exchange Fee Low:${exchangeFee[0].toFixed(2)} SEK</p>
+                <p>-- Exchange Fee Low: ${exchangeFee[0].toFixed(2)} SEK</p>
                 <p>-- Exchange Fee High: ${exchangeFee[1].toFixed(2)} SEK</p>
                 <p>-- Weekend Fee: ${exchangeFee[2].toFixed(2)} SEK</p>
+                <p><strong>Total fee percentage:</strong> ${((totalFees / amountInSEK) * 100).toFixed(2)} %</p>
+                <p><strong>New exhange rate:</strong> 1 SEK = ${(amountToExchange / exchangeCost)} LOC</p>
             `;
             resultsContainer.appendChild(resultElement);
         });
