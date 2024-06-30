@@ -222,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p>-- Exchange Fee High: ${exchangeFee[1].toFixed(2)} SEK</p>
                 <p>-- Weekend Fee: ${exchangeFee[2].toFixed(2)} SEK</p>
                 <p><strong>Total fee percentage:</strong> ${((totalFees / amountInSEK) * 100).toFixed(2)} %</p>
-                <p><strong>New exhange rate:</strong> 1 SEK = ${(amountToExchange / exchangeCost)} LOC</p>
+                <p><strong>New exhange rate:</strong> 1 SEK = ${(amountToExchange / exchangeCost.toFixed(2))} LOC</p>
             `;
             resultsContainer.appendChild(resultElement);
         });
