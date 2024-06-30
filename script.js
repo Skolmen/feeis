@@ -163,6 +163,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const totalFees = totalWithdrawalFee + exchangeFeeTotal + atmFeeSek;
 
+            const feePercentage = (totalFees / amountInSEK) * 100;
+
             const resultElement = document.createElement('div');
             resultElement.classList.add('result');
             resultElement.innerHTML = `
@@ -179,6 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p>-- Exchange Fee High (SEK): ${exchangeFee[1].toFixed(2)} SEK</p>
                 <p>-- Weekend Fee (SEK): ${exchangeFee[2].toFixed(2)} SEK</p>
                 <p><strong>- ATM Fee (SEK):</strong> ${atmFeeSek.toFixed(2)} SEK</p>
+                <p><strong>Total Fee Percentage:</strong> ${feePercentage.toFixed(2)}%</p>
             `;
             resultsContainer.appendChild(resultElement);
         });
@@ -209,6 +212,8 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const totalFees = exchangeFee[0] + exchangeFee[1] + exchangeFee[2];
 
+            const feePercentage = (exchangeFeeTotal / amountInSEK) * 100;
+
             const resultElement = document.createElement('div');
             resultElement.classList.add('result');
             resultElement.innerHTML = `
@@ -221,6 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p>-- Exchange Fee Low:${exchangeFee[0].toFixed(2)} SEK</p>
                 <p>-- Exchange Fee High: ${exchangeFee[1].toFixed(2)} SEK</p>
                 <p>-- Weekend Fee: ${exchangeFee[2].toFixed(2)} SEK</p>
+                <p><strong>Total Fee Percentage:</strong> ${feePercentage.toFixed(2)}%</p>
             `;
             resultsContainer.appendChild(resultElement);
         });
