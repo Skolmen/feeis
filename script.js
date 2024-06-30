@@ -161,21 +161,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const totalCost = amountInSEK + totalWithdrawalFee + exchangeFeeTotal + atmFeeSek;
 
+            const totalFees = totalWithdrawalFee + exchangeFeeTotal + atmFeeSek;
+
             const resultElement = document.createElement('div');
             resultElement.classList.add('result');
             resultElement.innerHTML = `
                 <h3>${cardName}</h3>
+                <p><strong>Amount to withdraw (LOC):</strong> ${amountToWithdraw.toFixed(2)} LOC</p>
                 <p><strong>Amount in SEK:</strong> ${amountInSEK.toFixed(2)} SEK</p>
-                <p><strong>Withdrawal Fee (SEK):</strong> ${totalWithdrawalFee.toFixed(2)} SEK</p>
-                <p>Withdrawal Fee Low (SEK): ${withdrawalFee[0].toFixed(2)} SEK</p>
-                <p>Withdrawal Fee High (SEK): ${withdrawalFee[1].toFixed(2)} SEK</p>
-                <p><strong>Exchange Fee (SEK):</strong> ${exchangeFeeTotal.toFixed(2)} SEK</p>
-                <p>Exchange Fee Low (SEK): ${exchangeFee[0].toFixed(2)} SEK</p>
-                <p>Exchange Fee High (SEK): ${exchangeFee[1].toFixed(2)} SEK</p>
-                <p>Weekend Fee (SEK): ${exchangeFee[2].toFixed(2)} SEK</p>
-                <p><strong>ATM Fee (SEK):</strong> ${atmFeeSek.toFixed(2)} SEK</p>
                 <p><strong>Total Cost (SEK):</strong> ${totalCost.toFixed(2)} SEK</p>
-                <p><strong>Amount in local currency:</strong> ${amountToWithdraw.toFixed(2)} LOC</p>
+                <p><strong>Total Fees (SEK):</strong> ${totalFees.toFixed(2)} SEK</p>
+                <p><strong>- Withdrawal Fee (SEK):</strong> ${totalWithdrawalFee.toFixed(2)} SEK</p>
+                <p>-- Withdrawal Fee Low (SEK): ${withdrawalFee[0].toFixed(2)} SEK</p>
+                <p>-- Withdrawal Fee High (SEK): ${withdrawalFee[1].toFixed(2)} SEK</p>
+                <p><strong>- Exchange Fee (SEK):</strong> ${exchangeFeeTotal.toFixed(2)} SEK</p>
+                <p>-- Exchange Fee Low (SEK): ${exchangeFee[0].toFixed(2)} SEK</p>
+                <p>-- Exchange Fee High (SEK): ${exchangeFee[1].toFixed(2)} SEK</p>
+                <p>-- Weekend Fee (SEK): ${exchangeFee[2].toFixed(2)} SEK</p>
+                <p><strong>- ATM Fee (SEK):</strong> ${atmFeeSek.toFixed(2)} SEK</p>
             `;
             resultsContainer.appendChild(resultElement);
         });
@@ -203,18 +206,21 @@ document.addEventListener('DOMContentLoaded', () => {
             const exchangeFeeTotal = exchangeFee[0] + exchangeFee[1] + exchangeFee[2];
 
             const exchangeCost = exchangeFee[0] + exchangeFee[1] + exchangeFee[2] + amountInSEK;
+            
+            const totalFees = exchangeFee[0] + exchangeFee[1] + exchangeFee[2];
 
             const resultElement = document.createElement('div');
             resultElement.classList.add('result');
             resultElement.innerHTML = `
                 <h3>${cardName}</h3>
+                <p><strong>Amount to exchange (LOC):</strong> ${amountToExchange.toFixed(2)} LOC</p>
                 <p><strong>Amount in SEK:</strong> ${amountInSEK.toFixed(2)} SEK</p>
-                <p><strong>Exchange Fee:</strong> ${exchangeFeeTotal.toFixed(2)} SEK</p>
-                <p>Exchange Fee Low:${exchangeFee[0].toFixed(2)} SEK</p>
-                <p>Exchange Fee High: ${exchangeFee[1].toFixed(2)} SEK</p>
-                <p>Weekend Fee: ${exchangeFee[2].toFixed(2)} SEK</p>
                 <p><strong>Cost in (SEK):</strong> ${exchangeCost.toFixed(2)} SEK</p>
-                <p><strong>Amount in Currency:</strong> ${amountToExchange.toFixed(2)} LOC</p>
+                <p><strong>Total Fees:</strong> ${totalFees.toFixed(2)} SEK</p>
+                <p><strong>- Exchange Fee:</strong> ${exchangeFeeTotal.toFixed(2)} SEK</p>
+                <p>-- Exchange Fee Low:${exchangeFee[0].toFixed(2)} SEK</p>
+                <p>-- Exchange Fee High: ${exchangeFee[1].toFixed(2)} SEK</p>
+                <p>-- Weekend Fee: ${exchangeFee[2].toFixed(2)} SEK</p>
             `;
             resultsContainer.appendChild(resultElement);
         });
