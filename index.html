@@ -5,51 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travel Money Calculator</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- <link rel="manifest" href="manifest.json"> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- <script>
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('./service-worker.js')
+          .then(() => {
+            console.log('Service Worker Registered');
+          });
+        } -->
+    </script>
 </head>
 <body>
-    <div class="container">
-        <h1>Travel Money Calculator</h1>
-        <div class="global-settings">
-            <h2>Global Settings</h2>
-            <div class="box-5">     
-                <label for="currency-rate">1 SEK to Local currency (LOC): </label>
-                <input type="number" id="currency-rate" step="0.001">
-            </div>
-        </div>
-        <div class="comparison">
-            <h2>Compare Costs</h2>
-
-            <div class="box-1">
-                <div class="box-1-1">      
-                    <div class="box-2">
-                        <label for="amount-to-withdraw">Amount to Exchange/Witdraw (LOC):</label>
-                        <input type="number" id="amount-to-withdraw" value="">
-                    </div>
-                    <div class="box-3">
-                        <label for="atm-fee-eur">ATM Fee in LOC:</label>
-                        <input type="number" id="atm-fee-loc" value="">
-                    </div>
-                </div>  
-                <div class="box-2-1">
-                    <label for="weekday-checkbox">Weekend Exchange:</label>
-                    <input type="checkbox" id="weekday-checkbox">
-                </div>
-            </div>
-            <div class="box-4">
-                <button id="compare-costs">Compare</button>
-                <button id="compare-exchange">Compare Exchange Only</button>
-            </div>
-        </div>
-        <div id="results-container">
-            <h2>Results</h2>
-            <p>The results will be presented here</p>
-        </div> <!-- Container for results -->
-        <div class="cards" id="card-list">
-            <h2>Cards</h2>
-            <button id="add-card">Add Card</button>
-            <!-- Cards will be dynamically added here -->
-        </div>
-    </div>
-    <script src="script.js"></script>
+    <script src="main.js" type="module"></script>
 </body>
 </html>
