@@ -16,6 +16,7 @@ header {
     height: 70px;
     display: flex;
     align-items: center;
+    background-color: aliceblue;
 }
 
 header > h1 {
@@ -29,6 +30,7 @@ main {
     width: 100%;
     margin-bottom: -80px; /* Adjust for the fixed nav bar */
     height: calc(100vh - 150px); /* Adjust for the header and nav bar */
+    background-color: aliceblue;
 }
 
 nav {
@@ -43,6 +45,61 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.current-exchange-rate-box > .input-box-wrapper > span {
+    margin-top: 5px;
+}
+
+.current-exchange-rate-box > .input-box-wrapper > span > span {
+    width: 25%;
+}
+
+.current-exchange-rate-box > .input-box-wrapper > span > input {
+    width: 50%;
+}
+
+.input-box-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-box-wrapper > label {
+    margin-bottom: 5px;
+}
+
+.input-box-wrapper > span {
+    display: flex;
+    margin-bottom: 10px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.input-box-wrapper > span > input {
+    padding: 10px;
+    font-size: 16px;
+    width: 80%;
+}
+
+.input-box-wrapper > span > span {
+    width: 20%;
+    text-align: center;
+}
+
+.compare-button-box {
+    display: flex;
+    justify-content: space-around;
+}
+
+.compare-button-box > button {
+    padding: 15px 15px;
+    margin: 0 5px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
 }
 
 nav > ul {
@@ -66,16 +123,9 @@ nav > ul > li > a {
 
 .page {
     width: 100%;
+    padding: 20px;
 }
 
-#main-page {
-    background-color: aqua;
-}
-
-#card-page {
-    background-color: beige;
-}
-
-#new-card-page {
-    background-color: red;
+#main-page > div {
+    padding-bottom: 20px;
 }

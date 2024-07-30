@@ -53,7 +53,7 @@ export class PageController {
     createHeader() {
         const $header = $(`
             <header>
-                <h1>Travel Calculator</h1>    
+                <h1>🌐 Travel Calculator</h1>    
             </header>`
         );
 

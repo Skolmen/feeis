@@ -2,11 +2,21 @@ export const IDS = {
     MAIN_PAGE: 'main-page',
     NEW_CARD_PAGE: 'new-card-page',
     CARD_PAGE: 'card-page',
+    EXCHANGE_RATE: 'exchange-rate',
+    EXCHANGE_RESULT: 'exchange-result',
+    ATM_FEE: 'atm-fee',
+    AMOUNT_TO_EXCHANGE: 'amount-to-exchange',
+    COMPARE_WITHDRAWAL: 'compare-withdrawal',
+    COMPARE_EXCHANGE: 'compare-exchange',
 }
 
 export const CLASSES = {
     ACTIVE: 'active',
     PAGE: 'page',
+    CURRENT_EXCHANGE_RATE_BOX: 'current-exchange-rate-box',
+    COMPARSION_BOX: 'comparison-box',
+    INPUT_BOX_WRAPPER: 'input-box-wrapper',
+    COMAPRE_BUTTON_BOX: 'compare-button-box',
 }
 
 /**

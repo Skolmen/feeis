@@ -1,9 +1,61 @@
+import LocalStorageManager from '../components/LocalStorageManager.js';
 import { Page } from '../components/Page.js';
-import { CLASSES, IDS } from '../constants/selectors.js';
+import { CLASSES, DOM_SELECTORS, IDS } from '../constants/selectors.js';
 
 const PAGE = `
     <div class="${CLASSES.PAGE}" id="${IDS.MAIN_PAGE}">
-        Hejsan!
+    </div>
+`;
+
+const CURRENT_EXCHANGE_RATE = `
+    <div class="${CLASSES.CURRENT_EXCHANGE_RATE_BOX}">
+        <h2>Exchange Rate</h2>
+        <div class="${CLASSES.INPUT_BOX_WRAPPER}">
+             <span>
+                <span>1 HOM = </span>
+                <input type="number" id="${IDS.EXCHANGE_RATE}" value="0">
+                <span>LOC</span>
+            </span>
+        </div>
+        <p>HOM is your home currency and LOC is the currency of the country you are visiting.</p> 
+    </div>
+`;
+
+const COMPARISON_AMOUNT = `
+    <div class="${CLASSES.COMPARSION_BOX}">
+        <h2>Comapre Costs</h2>
+        <div>
+            <div class="${CLASSES.INPUT_BOX_WRAPPER}">
+                <label for="${IDS.AMOUNT_TO_EXCHANGE}">Amount to exchange/withdraw in LOC</label>
+                <span>
+                    <input type="number" id="${IDS.AMOUNT_TO_EXCHANGE}" name="${IDS.AMOUNT_TO_EXCHANGE}" value="0">
+                    <span>LOC</span>
+                </span>
+            </div>
+            <div class="${CLASSES.INPUT_BOX_WRAPPER}">
+                <label for="${IDS.ATM_FEE}">ATM Fee</label>
+                <span>
+                    <input type="number" id="${IDS.ATM_FEE}" name="${IDS.ATM_FEE}" value="0">
+                    <span>LOC</span>
+                </span>
+            </div>
+        </div>
+    </div>
+`;
+
+const COMPARE_BUTTON_BOX = `
+    <div class="${CLASSES.COMAPRE_BUTTON_BOX}">
+        <button id="${IDS.COMPARE_WITHDRAWAL}">Compare withdrawal</button>
+        <button id="${IDS.COMPARE_EXCHANGE}">Compare exchange</button>
+    </div>
+`;
+
+const EXCHANGE_RESULT = `
+    <div>
+        <h2>Exchange Result</h2>
+        <div id="${IDS.EXCHANGE_RESULT}">
+            The exchange result will be displayed here.
+        </div>
     </div>
 `;
 
@@ -19,7 +71,34 @@ export class MainPage extends Page {
     } 
 
     init() {
+        const $comparisonAmount = $(COMPARISON_AMOUNT);
+        const $exchangeResult = $(EXCHANGE_RESULT);
+        const $compareButton = $(COMPARE_BUTTON_BOX);
+        const $exchangeRate = this.initExchangeRate();
+
+        this.$element.append($exchangeRate);
+        this.$element.append($comparisonAmount);
+        this.$element.append($compareButton);
+        this.$element.append($exchangeResult);
+
+
         return this;
+    }
+
+    initExchangeRate() {
+        const $exchangeRate = $(CURRENT_EXCHANGE_RATE);
+
+        const exchangeRate = LocalStorageManager.loadExchangeRate();
+
+        const $inputBox = $exchangeRate.find(DOM_SELECTORS.EXCHANGE_RATE);
+        $inputBox.val(Number(exchangeRate));
+
+        $inputBox.on('change', (event) => {
+            const exchangeRate = event.target.value;
+            LocalStorageManager.saveExchangeRate(exchangeRate);
+        });
+
+        return $exchangeRate;
     }
 
 }
