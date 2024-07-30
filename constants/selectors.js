@@ -1,12 +1,12 @@
 export const IDS = {
-    ADD_CARD: 'add-card',
+    MAIN_PAGE: 'main-page',
+    NEW_CARD_PAGE: 'new-card-page',
+    CARD_PAGE: 'card-page',
 }
 
 export const CLASSES = {
-    CARD: 'card',
-    CARD_TITLE: 'card-title',
-    CARD_DESCRIPTION: 'card-description',
-    CARD_BUTTON: 'card-button',
+    ACTIVE: 'active',
+    PAGE: 'page',
 }
 
 /**

@@ -1,0 +1,81 @@
+/* Reset default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    font-family: Arial, sans-serif;
+}
+
+header {
+    color: black;
+    padding: 10px 0;
+    text-align: left;
+    height: 70px;
+    display: flex;
+    align-items: center;
+}
+
+header > h1 {
+    margin-left: 15px;
+    color: black;
+}
+
+main {
+    overflow: hidden;
+    overflow-y: auto; /* Enable vertical scrolling */
+    width: 100%;
+    margin-bottom: -80px; /* Adjust for the fixed nav bar */
+    height: calc(100vh - 150px); /* Adjust for the header and nav bar */
+}
+
+nav {
+    background-color: white;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    width: 100%;
+    position: fixed; /* Fix position at the bottom */
+    bottom: 0;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+nav > ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+nav > ul > li {
+    width: 100%;
+    text-align: center;
+    font-size: larger;
+    color: black;
+}
+
+nav > ul > li > a {
+    text-decoration: none;
+    color: black;
+}
+
+.page {
+    width: 100%;
+}
+
+#main-page {
+    background-color: aqua;
+}
+
+#card-page {
+    background-color: beige;
+}
+
+#new-card-page {
+    background-color: red;
+}

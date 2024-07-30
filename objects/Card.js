@@ -1,4 +1,4 @@
-import { DOM_SELECTORS } from "./selectors";
+import { DOM_SELECTORS } from "../constants/selectors";
 
 export class Card {
     constructor(data = {}) {
