@@ -71,16 +71,15 @@ export class MainPage extends Page {
     } 
 
     init() {
-        const $comparisonAmount = $(COMPARISON_AMOUNT);
+        const $comparisonAmount = this.initComparisonAmount();
         const $exchangeResult = $(EXCHANGE_RESULT);
-        const $compareButton = $(COMPARE_BUTTON_BOX);
+        const $compareButton = this.initCompareButton();
         const $exchangeRate = this.initExchangeRate();
 
         this.$element.append($exchangeRate);
         this.$element.append($comparisonAmount);
         this.$element.append($compareButton);
         this.$element.append($exchangeResult);
-
 
         return this;
     }
@@ -99,6 +98,29 @@ export class MainPage extends Page {
         });
 
         return $exchangeRate;
+    }
+
+    initComparisonAmount() {
+        const $comparisonAmount = $(COMPARISON_AMOUNT);
+
+        return $comparisonAmount;
+    }
+
+    initCompareButton() {
+        const $compareButton = $(COMPARE_BUTTON_BOX);
+
+        const $compareWithdrawal = $compareButton.find(DOM_SELECTORS.COMPARE_WITHDRAWAL);
+        const $compareExchange = $compareButton.find(DOM_SELECTORS.COMPARE_EXCHANGE);
+
+        $compareWithdrawal.on('click', () => {
+            console.log('Compare withdrawal');
+        });
+
+        $compareExchange.on('click', () => {
+            console.log('Compare exchange');
+        });
+
+        return $compareButton;
     }
 
 }

@@ -129,3 +129,60 @@ nav > ul > li > a {
 #main-page > div {
     padding-bottom: 20px;
 }
+
+.card-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.card {
+    width: 300px; /* Fixed width */
+    /* the height is calculated based on the width using gyllene snittet */
+    height: calc(300px / 1.618); /* 1.618 is the golden ratio */
+    perspective: 1000px;
+}
+
+.card-inner {
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.card.card-flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    background-color: lightblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.card-back {
+    transform: rotateY(180deg);
+}
+
+.card-back {
+    background-color: lightcoral;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-back > div {
+    display: flex;
+    flex-direction: column;
+}

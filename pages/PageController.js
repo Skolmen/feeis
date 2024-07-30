@@ -34,8 +34,8 @@ export class PageController {
         this.newCardPage = new NewCardPage();
         this.menuBar = new MenuBar();
 
-        this.mainPage.init().show();
-        this.cardPage.init().hide();
+        this.mainPage.init().hide();
+        this.cardPage.init().show();
         this.newCardPage.init().hide();
         this.menuBar.init();
 

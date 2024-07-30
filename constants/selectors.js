@@ -17,6 +17,12 @@ export const CLASSES = {
     COMPARSION_BOX: 'comparison-box',
     INPUT_BOX_WRAPPER: 'input-box-wrapper',
     COMAPRE_BUTTON_BOX: 'compare-button-box',
+    CARD_LIST: 'card-list',
+    CARD: 'card',
+    CARD_FRONT: 'card-front',
+    CARD_BACK: 'card-back',
+    CARD_FLIPPED: 'card-flipped',
+    CARD_INNER: 'card-inner',
 }
 
 /**
