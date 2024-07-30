@@ -34,64 +34,90 @@ export class CardPage extends Page {
     }
 
     renderCard(card) {
-    const $card = $(`
-        <div class="${CLASSES.CARD}">
-            <div class="${CLASSES.CARD_INNER}">
-                <div class="${CLASSES.CARD_FRONT}">
-                    <h2>Revolut</h2>
-                    <label>Withdrawn</label>
-                    <input type="number" value="0">
-                    <label>Exchanged</label>
-                    <input type="number" value="0">
-                    <button>Flip</button>
-                </div>
-                <div class="${CLASSES.CARD_BACK}">
-                    <div>
-                        <h3>Withdrawal Low End</h3>
-                        <label>Fee (%)</label>
+        const $card = $(`
+            <div class="${CLASSES.CARD}">
+                <div class="${CLASSES.CARD_INNER}">
+                    <div class="${CLASSES.CARD_FRONT}">
+                        <h2>Revolut</h2>
+                        <label>Withdrawn</label>
                         <input type="number" value="0">
-                        <label>Minimum Fee (HOM)</label>
+                        <label>Exchanged</label>
                         <input type="number" value="0">
-                        <label>Maximum to Low (HOM)</label>
-                        <input type="number" value="0">
+                        <button>Flip</button>
                     </div>
-
-                    <div>
-                        <h3>Withdrawal High End</h3>
-                        <label>Fee (%)</label>
-                        <input type="number" value="0">
-                        <label>Minimum Fee (HOM)</label>
-                        <input type="number" value="0">
+                    <div class="${CLASSES.CARD_BACK}">
+                        <div>
+                            <h3>Withdrawal Low End <span class="toggle-icon">⬇</span></h3>
+                            <div class="submenu">
+                                <label>Fee (%)</label>
+                                <input type="number" value="0">
+                                <label>Minimum Fee (HOM)</label>
+                                <input type="number" value="0">
+                                <label>Maximum to Low (HOM)</label>
+                                <input type="number" value="0">
+                            </div>
+                        </div>
+        
+                        <div>
+                            <h3>Withdrawal High End <span class="toggle-icon">⬇</span></h3>
+                            <div class="submenu">
+                                <label>Fee (%)</label>
+                                <input type="number" value="0">
+                                <label>Minimum Fee (HOM)</label>
+                                <input type="number" value="0">
+                            </div>
+                        </div>
+        
+                        <div>
+                            <h3>Exchange Fees<span class="toggle-icon">⬇</span></h3>
+                            <div class="submenu">
+                                <label>Low End (%)</label>
+                                <input type="number" value="0">
+                                <label>Maximum to Low End (HOM)</label>
+                                <input type="number" value="0">
+                                <label>High End (%)</label>
+                                <input type="number" value="0">
+                            </div>
+                        </div>
+        
+                        <div>
+                            <h3>Other <span class="toggle-icon">⬇</span></h3>
+                            <div class="submenu">
+                                <label>Weekend Fee (%)</label>
+                                <input type="number" value="0">
+                            </div>
+                        </div>
+        
+                        <button>Flip</button>
                     </div>
-
-                    <div>
-                        <h3>Exchange</h3>
-                        <label>Fee Low End (%)</label>
-                        <input type="number" value="0">
-                        <label>Max Low End (HOM)</label>
-                        <input type="number" value="0">
-                        <label>Fee High End (%)</label>
-                        <input type="number" value="0">
-                    </div>
-
-                    <div>
-                        <h3>Other</h3>
-                        <label>Weekend Fee (%)</label>
-                        <input type="number" value="0">
-                    </div>
-
-                    <button>Flip</button>
                 </div>
             </div>
-        </div>
-    `);
-
-    const $button = $card.find('button');
-
-    $button.on('click', () => {
-        $card.toggleClass('card-flipped');
-    });
-
-    return $card;
+        `);
+        
+        $card.find('h3').on('click', function() {
+            const $submenu = $(this).next('.submenu');
+            const $icon = $(this).find('.toggle-icon');
+        
+            if ($submenu.hasClass('submenu-expanded')) {
+                // If the clicked submenu is already expanded, close it
+                $submenu.removeClass('submenu-expanded');
+                $icon.text('⬇'); // Change to down arrow
+            } else {
+                // Close any open submenu
+                $card.find('.submenu-expanded').removeClass('submenu-expanded');
+                $card.find('.toggle-icon').text('⬇'); // Reset all icons to down arrow
+        
+                // Open the clicked submenu
+                $submenu.addClass('submenu-expanded');
+                $icon.text('⬆'); // Change to up arrow if expanded
+            }
+        });
+        
+        $card.on('click', 'button', function() {
+            $card.toggleClass('card-flipped');
+        });
+        
+        
+        return $card;
     }
 }

@@ -139,9 +139,9 @@ nav > ul > li > a {
 }
 
 .card {
-    width: 300px; /* Fixed width */
+    width: 400px; /* Fixed width */
     /* the height is calculated based on the width using gyllene snittet */
-    height: calc(300px / 1.618); /* 1.618 is the golden ratio */
+    height: calc(400px / 1.618); /* 1.618 is the golden ratio */
     perspective: 1000px;
 }
 
@@ -180,9 +180,15 @@ nav > ul > li > a {
     background-color: lightcoral;
     display: flex;
     flex-direction: column;
+    text-align: left;
 }
 
-.card-back > div {
-    display: flex;
+.submenu  {
+    display: none;
     flex-direction: column;
+}
+
+.submenu-expanded {
+    display: flex;
+
 }
