@@ -46,9 +46,18 @@ export class CardPage extends Page {
                         <button>Flip</button>
                     </div>
                     <div class="${CLASSES.CARD_BACK}">
-                        <div>
-                            <h3>Withdrawal Low End <span class="toggle-icon">⬇</span></h3>
-                            <div class="submenu">
+                        <div class="card-back-left">
+                            <h3>Withdrawal Fees</h3>
+                            <h3 class="withdrawal-low-end-header clickable-header">Low End</h3>
+                            <h3 class="withdrawal-high-end-header clickable-header">High End </h3>
+                            <h3></br></h3>
+                            <h3 class="exchange-fees-header clickable-header">Exchange Fees</h3>
+                            <h3 class="other-fees-header clickable-header">Other</h4>
+                            <button>Flip</button>
+                        </div>
+    
+                        <div class="card-back-right">
+                            <div class="submenu withdrawal-low-end">
                                 <label>Fee (%)</label>
                                 <input type="number" value="0">
                                 <label>Minimum Fee (HOM)</label>
@@ -56,21 +65,15 @@ export class CardPage extends Page {
                                 <label>Maximum to Low (HOM)</label>
                                 <input type="number" value="0">
                             </div>
-                        </div>
         
-                        <div>
-                            <h3>Withdrawal High End <span class="toggle-icon">⬇</span></h3>
-                            <div class="submenu">
+                            <div class="submenu withdrawal-high-end">
                                 <label>Fee (%)</label>
                                 <input type="number" value="0">
                                 <label>Minimum Fee (HOM)</label>
                                 <input type="number" value="0">
                             </div>
-                        </div>
         
-                        <div>
-                            <h3>Exchange Fees<span class="toggle-icon">⬇</span></h3>
-                            <div class="submenu">
+                            <div class="submenu exchange-fees">
                                 <label>Low End (%)</label>
                                 <input type="number" value="0">
                                 <label>Maximum to Low End (HOM)</label>
@@ -78,46 +81,59 @@ export class CardPage extends Page {
                                 <label>High End (%)</label>
                                 <input type="number" value="0">
                             </div>
-                        </div>
         
-                        <div>
-                            <h3>Other <span class="toggle-icon">⬇</span></h3>
-                            <div class="submenu">
+                            <div class="submenu other-fees">
                                 <label>Weekend Fee (%)</label>
                                 <input type="number" value="0">
                             </div>
                         </div>
-        
-                        <button>Flip</button>
+    
                     </div>
                 </div>
             </div>
         `);
         
-        $card.find('h3').on('click', function() {
-            const $submenu = $(this).next('.submenu');
-            const $icon = $(this).find('.toggle-icon');
-        
-            if ($submenu.hasClass('submenu-expanded')) {
-                // If the clicked submenu is already expanded, close it
-                $submenu.removeClass('submenu-expanded');
-                $icon.text('⬇'); // Change to down arrow
-            } else {
-                // Close any open submenu
-                $card.find('.submenu-expanded').removeClass('submenu-expanded');
-                $card.find('.toggle-icon').text('⬇'); // Reset all icons to down arrow
-        
-                // Open the clicked submenu
-                $submenu.addClass('submenu-expanded');
-                $icon.text('⬆'); // Change to up arrow if expanded
-            }
+        const $withdrawalLowEndHeader = $card.find('.withdrawal-low-end-header');
+        const $withdrawalHighEndHeader = $card.find('.withdrawal-high-end-header');
+        const $exchangeFeesHeader = $card.find('.exchange-fees-header');
+        const $otherFeesHeader = $card.find('.other-fees-header');
+    
+        const $withdrawalLowEnd = $card.find('.withdrawal-low-end');
+        const $withdrawalHighEnd = $card.find('.withdrawal-high-end');
+        const $exchangeFees = $card.find('.exchange-fees');
+        const $otherFees = $card.find('.other-fees');
+    
+        function closeAllSubmenus() {
+            $withdrawalLowEnd.hide();
+            $withdrawalHighEnd.hide();
+            $exchangeFees.hide();
+            $otherFees.hide();
+        }
+    
+        $withdrawalLowEndHeader.on('click', () => {
+            closeAllSubmenus();
+            $withdrawalLowEnd.toggle();
         });
-        
+    
+        $withdrawalHighEndHeader.on('click', () => {
+            closeAllSubmenus();
+            $withdrawalHighEnd.toggle();
+        });
+    
+        $exchangeFeesHeader.on('click', () => {
+            closeAllSubmenus();
+            $exchangeFees.toggle();
+        });
+    
+        $otherFeesHeader.on('click', () => {
+            closeAllSubmenus();
+            $otherFees.toggle();
+        });
+    
         $card.on('click', 'button', function() {
             $card.toggleClass('card-flipped');
         });
-        
-        
+    
         return $card;
     }
 }

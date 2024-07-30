@@ -174,13 +174,39 @@ nav > ul > li > a {
 
 .card-back {
     transform: rotateY(180deg);
-}
-
-.card-back {
     background-color: lightcoral;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     text-align: left;
+}
+
+.card-back-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+}
+
+.card-back-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+}
+
+.card-back-left > button,
+.card-front > button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
 }
 
 .submenu  {
@@ -188,7 +214,24 @@ nav > ul > li > a {
     flex-direction: column;
 }
 
+.submenu > input {
+    padding: 5px;
+    font-size: 15px;
+    width: 80%;
+}
+
 .submenu-expanded {
     display: flex;
 
+}
+
+.clickable-header {
+    cursor: pointer;
+    color: blue; /* Change color to indicate it's clickable */
+    text-decoration: underline; /* Add underline to indicate it's a link */
+}
+
+.clickable-header:hover {
+    color: darkblue; /* Darken color on hover */
+    text-decoration: none; /* Remove underline on hover */
 }
