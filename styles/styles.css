@@ -235,3 +235,19 @@ nav > ul > li > a {
     color: darkblue; /* Darken color on hover */
     text-decoration: none; /* Remove underline on hover */
 }
+
+#weekend-checkbox {
+    height: 20px;
+    width: 20px;
+}
+
+.weekend-checkbox > span {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+} 
+
+.weekend-checkbox > span > label {
+    margin-left: 10px;
+    text-align: center;
+} 

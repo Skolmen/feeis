@@ -8,6 +8,7 @@ export const IDS = {
     AMOUNT_TO_EXCHANGE: 'amount-to-exchange',
     COMPARE_WITHDRAWAL: 'compare-withdrawal',
     COMPARE_EXCHANGE: 'compare-exchange',
+    WEEKEND_CHECKBOX: 'weekend-checkbox',
 }
 
 export const CLASSES = {
@@ -23,6 +24,7 @@ export const CLASSES = {
     CARD_BACK: 'card-back',
     CARD_FLIPPED: 'card-flipped',
     CARD_INNER: 'card-inner',
+    WEEKEND_CHECKBOX: 'weekend-checkbox',
 }
 
 /**

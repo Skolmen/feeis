@@ -43,6 +43,17 @@ const COMPARISON_AMOUNT = `
     </div>
 `;
 
+const WEEKEND_CHECKBOX = `
+    <div class="${CLASSES.WEEKEND_CHECKBOX}">
+        <h2>Weekend</h2>
+        <p>Are you exchanging or withdrawing money on the weekend?</p>
+        <span>
+            <input type="checkbox" id="${IDS.WEEKEND_CHECKBOX}" name="${IDS.WEEKEND_CHECKBOX}">
+            <label for="${IDS.WEEKEND_CHECKBOX}">Yes</label>
+        </span>
+    </div>
+`;
+
 const COMPARE_BUTTON_BOX = `
     <div class="${CLASSES.COMAPRE_BUTTON_BOX}">
         <button id="${IDS.COMPARE_WITHDRAWAL}">Compare withdrawal</button>
@@ -75,9 +86,11 @@ export class MainPage extends Page {
         const $exchangeResult = $(EXCHANGE_RESULT);
         const $compareButton = this.initCompareButton();
         const $exchangeRate = this.initExchangeRate();
+        const $weekendCheckbox = this.initWeekendCheckbox();
 
         this.$element.append($exchangeRate);
         this.$element.append($comparisonAmount);
+        this.$element.append($weekendCheckbox);
         this.$element.append($compareButton);
         this.$element.append($exchangeResult);
 
@@ -121,6 +134,12 @@ export class MainPage extends Page {
         });
 
         return $compareButton;
+    }
+
+    initWeekendCheckbox() {
+        const $weekendCheckbox = $(WEEKEND_CHECKBOX);
+
+        return $weekendCheckbox;
     }
 
 }
