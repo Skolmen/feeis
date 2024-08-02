@@ -139,31 +139,9 @@ nav > ul > li > a {
 }
 
 .card {
-    width: 400px; /* Fixed width */
+    width: 95vw; /* Fixed width */
     /* the height is calculated based on the width using gyllene snittet */
-    height: calc(400px / 1.618); /* 1.618 is the golden ratio */
-    perspective: 1000px;
-}
-
-.card-inner {
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.6s;
-    transform-style: preserve-3d;
-}
-
-.card.card-flipped .card-inner {
-    transform: rotateY(180deg);
-}
-
-.card-front, .card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
+    height: calc(95vw / 1.618); /* 1.618 is the golden ratio */
     background-color: lightblue;
     display: flex;
     flex-direction: column;
@@ -172,68 +150,82 @@ nav > ul > li > a {
     border-radius: 10px;
 }
 
-.card-back {
-    transform: rotateY(180deg);
-    background-color: lightcoral;
+.card-top {
+    height: 20%;
+    width: 100%;
     display: flex;
-    flex-direction: row;
-    text-align: left;
+    align-items: center;
+    justify-content: flex-start;
 }
 
-.card-back-left {
+.card-top > h2 {
+    margin-left: 10px;
+    font-size: 30px;
+}
+
+.card-middle {
+    height: 60%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-middle > div {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    width: 50%;
-    height: 100%;
+    justify-content: center; /* Center the content vertically */
 }
 
-.card-back-right {
+.card-middle > div > label {
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.card-middle > div > span {
+    display: flex; /* Enable flexbox layout */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+}
+
+.card-middle > div > span > span {
+    margin-left: 5px;
+}
+
+.card-middle > div > span > input {
+    width: 50%;
+    text-align: right;
+    padding: 5px;
+    font-size: 16px;
+}
+
+.card-bottom {
+    height: 20%;
+    width: 100%;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    width: 50%;
-    height: 100%;
+    justify-content: flex-end;
 }
 
-.card-back-left > button,
-.card-front > button {
-    padding: 10px 20px;
-    margin-top: 10px;
+.card-bottom > div {
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.card-bottom > div > button {
+    padding: 10px 15px;
     border: none;
     background-color: #007bff;
     color: white;
     cursor: pointer;
     border-radius: 5px;
-}
-
-.submenu  {
-    display: none;
-    flex-direction: column;
-}
-
-.submenu > input {
-    padding: 5px;
     font-size: 15px;
-    width: 80%;
 }
 
-.submenu-expanded {
-    display: flex;
-
-}
-
-.clickable-header {
-    cursor: pointer;
-    color: blue; /* Change color to indicate it's clickable */
-    text-decoration: underline; /* Add underline to indicate it's a link */
-}
-
-.clickable-header:hover {
-    color: darkblue; /* Darken color on hover */
-    text-decoration: none; /* Remove underline on hover */
+.card-bottom > div > button:hover {
+    background-color: #0056b3;
 }
 
 #weekend-checkbox {
@@ -251,3 +243,54 @@ nav > ul > li > a {
     margin-left: 10px;
     text-align: center;
 } 
+
+.popup {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    /* display: none; */
+}
+
+.popup-content {
+    background-color: #f4f4f4;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%;
+    border-radius: 15px;
+    font-size: 20px;
+}
+
+
+.popup-content > span > input,
+.popup-content > span > span > input {
+    font-size: 18px;
+    padding: 5px;
+}
+
+.popup-content > span > span > input {
+    width: 80%;
+}
+
+.popup-content > span {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+    width: 100%;
+}
+
+.popup-close {
+    color: red;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.delete-card-popup > div:nth-child(2) {
+    background-color: red !important;
+}

@@ -20,11 +20,14 @@ export const CLASSES = {
     COMAPRE_BUTTON_BOX: 'compare-button-box',
     CARD_LIST: 'card-list',
     CARD: 'card',
-    CARD_FRONT: 'card-front',
-    CARD_BACK: 'card-back',
-    CARD_FLIPPED: 'card-flipped',
-    CARD_INNER: 'card-inner',
+    CARD_TOP: 'card-top',
+    CARD_MIDDLE: 'card-middle',
+    CARD_BOTTOM: 'card-bottom',
     WEEKEND_CHECKBOX: 'weekend-checkbox',
+    POPUP: 'popup',
+    POPUP_CONTENT: 'popup-content',
+    POPUP_CLOSE: 'popup-close',
+    DELETE_CARD_POPUP: 'delete-card-popup',
 }
 
 /**

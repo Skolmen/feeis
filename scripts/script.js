@@ -34,24 +34,34 @@ document.addEventListener('DOMContentLoaded', () => {
             <input type="number" class="withdrawal-fee-low" value="${data.withdrawalFeeLow || 0}">
             <label>Withdrawal Fee Minimum (SEK):</label>
             <input type="number" class="withdrawal-fee-min" value="${data.withdrawalFeeMin || 0}">
+
             <label>Max Withdrawal Low (SEK):</label>
             <input type="number" class="max-withdrawal-low" value="${data.maxWithdrawalLow || 0}">
+
             <label>Withdrawal Fee High End (%):</label>
             <input type="number" class="withdrawal-fee-high" value="${data.withdrawalFeeHigh || 0}">
+
             <label>Withdrawal Fee High Minimum (SEK):</label>
             <input type="number" class="withdrawal-fee-high-min" value="${data.withdrawalFeeHighMin || 0}">
+
             <label>Exchange Fee Low End (%):</label>
             <input type="number" class="exchange-fee-low" value="${data.exchangeFeeLow || 0}">
+
             <label>Max Exchange Low End (SEK):</label>
             <input type="number" class="max-exchange-low" value="${data.maxExchangeLow || 0}">
+
             <label>Exchange Fee High End (%):</label>
             <input type="number" class="exchange-fee-high" value="${data.exchangeFeeHigh || 0}">
+
             <label>Weekend Fee (%):</label>
             <input type="number" class="weekend-fee" value="${data.weekendFee || 0}">
+
             <label>Withdrawn (SEK):</label>
             <input type="number" class="withdrawn-amount" value="${data.withdrawnAmount || 0}">
+
             <label>Exchanged (SEK):</label>
             <input type="number" class="exchanged-amount" value="${data.exchangedAmount || 0}">
+            
             <div class="card-actions">
                 <button class="remove-card">Remove</button>
             </div>

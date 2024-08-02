@@ -13,6 +13,110 @@ const PAGE = `
     </div>
 `;
 
+const POP_UP = `
+    <div class="${CLASSES.POPUP}">
+        <div class="${CLASSES.POPUP_CONTENT}">
+            <div class="${CLASSES.POPUP_CLOSE}">X</div>
+            <h1>Edit Card</h1>
+            <span>
+                <label>Card Name</label>
+                <input type="text" value="Revolut">
+            </span>
+            <span>
+                <label>Withdrawn</label>
+                <span>
+                    <input type="number" value="0">
+                    <span>HOM</span>
+                </span>
+            </span>
+            <span>
+                <label>Exchanged</label>
+                <span>
+                    <input type="number" value="0">
+                    <span>HOM</span>
+                </span>
+            </span>
+            <span>
+                <label>Wihdrawal Fee Low End</label>
+                <span>
+                    <input type="number" value="0">
+                    <span>%</span>
+                </span>
+            </span>
+            <span>
+                <label>Wihdrawal Fee Low Minimum</label>
+                <span>
+                    <input type="number" value="0">
+                    <span>HOM</span>
+                </span>
+            </span>
+            <span>
+                <label>Max Withdrawal Low</label>
+                <span>
+                    <input type="number" value="0">
+                    <span>HOM</span>
+                </span>
+            </span>
+            <span>
+                <label>Withdrawal High End</label>
+                <span>
+                    <input type="number" value="0">
+                    <span>%</span>
+                </span>
+            </span>
+            <span>
+                <label>Withdrawal Fee High Minimum</label>
+                <span>
+                    <input type="number" value="0">
+                    <span>HOM</span>
+                </span>
+            </span>
+            <span>
+                <label>Exchange Fee Low End</label>
+                <span>
+                    <input type="number" value="0">
+                    <span>%</span>
+                </span>
+            </span>
+            <span>
+                <label>Max Exchange Low End</label>
+                <span>
+                    <input type="number" value="0">
+                    <span>HOM</span>
+                </span>
+            </span>
+            <span>
+                <label>Exchange Fee High End</label>
+                <span>
+                    <input type="number" value="0">
+                    <span>%</span>
+                </span>
+            </span>
+            <span>
+                <label>Weekend Exchange Fee</label>
+                <span>
+                    <input type="number" value="0">
+                    <span>%</span>
+                </span>
+            </span>
+        </div>
+    </div>
+`;
+
+const DELETE_DIALOG = `
+    <div class="${CLASSES.POPUP}">
+        <div class="${CLASSES.POPUP_CONTENT} ${CLASSES.DELETE_CARD_POPUP}">
+            <div class="${CLASSES.POPUP_CLOSE}">X</div>
+            <h2>Delete Card</h2>
+            <p>Are you sure you want to delete this card?</p>
+            <div>
+                <button>Yes</button>
+                <button>No</button>
+            </div>
+        </div>
+    </div>
+`;
+
 /**
  * This renders and manages the card page. 
  * 
@@ -28,7 +132,15 @@ export class CardPage extends Page {
         // Add a card to the page.
         const $card = this.renderCard();
 
+        const $popUp = this.renderPopUp();
+
+        const $deleteDialog = this.renderDeleteDialog();
+
         this.$element.find(DOM_SELECTORS.CARD_LIST).append($card);
+
+        this.$element.append($popUp);
+
+        this.$element.append($deleteDialog);
 
         return this;
     }
@@ -36,104 +148,68 @@ export class CardPage extends Page {
     renderCard(card) {
         const $card = $(`
             <div class="${CLASSES.CARD}">
-                <div class="${CLASSES.CARD_INNER}">
-                    <div class="${CLASSES.CARD_FRONT}">
-                        <h2>Revolut</h2>
+                <div class="${CLASSES.CARD_TOP}">
+                    <h2>Revolut</h2>
+                </div>
+                <div class="${CLASSES.CARD_MIDDLE}">
+                    <div>
                         <label>Withdrawn</label>
-                        <input type="number" value="0">
-                        <label>Exchanged</label>
-                        <input type="number" value="0">
-                        <button>Flip</button>
+                        <span>
+                            <input type="number" value="0">
+                            <span>HOM</span>
+                        </span>
                     </div>
-                    <div class="${CLASSES.CARD_BACK}">
-                        <div class="card-back-left">
-                            <h3>Withdrawal Fees</h3>
-                            <h3 class="withdrawal-low-end-header clickable-header">Low End</h3>
-                            <h3 class="withdrawal-high-end-header clickable-header">High End </h3>
-                            <h3></br></h3>
-                            <h3 class="exchange-fees-header clickable-header">Exchange Fees</h3>
-                            <h3 class="other-fees-header clickable-header">Other</h4>
-                            <button>Flip</button>
-                        </div>
-    
-                        <div class="card-back-right">
-                            <div class="submenu withdrawal-low-end">
-                                <label>Fee (%)</label>
-                                <input type="number" value="0">
-                                <label>Minimum Fee (HOM)</label>
-                                <input type="number" value="0">
-                                <label>Maximum to Low (HOM)</label>
-                                <input type="number" value="0">
-                            </div>
-        
-                            <div class="submenu withdrawal-high-end">
-                                <label>Fee (%)</label>
-                                <input type="number" value="0">
-                                <label>Minimum Fee (HOM)</label>
-                                <input type="number" value="0">
-                            </div>
-        
-                            <div class="submenu exchange-fees">
-                                <label>Low End (%)</label>
-                                <input type="number" value="0">
-                                <label>Maximum to Low End (HOM)</label>
-                                <input type="number" value="0">
-                                <label>High End (%)</label>
-                                <input type="number" value="0">
-                            </div>
-        
-                            <div class="submenu other-fees">
-                                <label>Weekend Fee (%)</label>
-                                <input type="number" value="0">
-                            </div>
-                        </div>
-    
+                    <div>
+                        <label>Exchanged</label>
+                        <span>
+                            <input type="number" value="0">
+                            <span>HOM</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="${CLASSES.CARD_BOTTOM}">
+                    <div>
+                        <button>Edit</button>
+                        <button>Delete</button>
                     </div>
                 </div>
             </div>
         `);
-        
-        const $withdrawalLowEndHeader = $card.find('.withdrawal-low-end-header');
-        const $withdrawalHighEndHeader = $card.find('.withdrawal-high-end-header');
-        const $exchangeFeesHeader = $card.find('.exchange-fees-header');
-        const $otherFeesHeader = $card.find('.other-fees-header');
-    
-        const $withdrawalLowEnd = $card.find('.withdrawal-low-end');
-        const $withdrawalHighEnd = $card.find('.withdrawal-high-end');
-        const $exchangeFees = $card.find('.exchange-fees');
-        const $otherFees = $card.find('.other-fees');
-    
-        function closeAllSubmenus() {
-            $withdrawalLowEnd.hide();
-            $withdrawalHighEnd.hide();
-            $exchangeFees.hide();
-            $otherFees.hide();
-        }
-    
-        $withdrawalLowEndHeader.on('click', () => {
-            closeAllSubmenus();
-            $withdrawalLowEnd.toggle();
+
+        const $editButton = $card.find('button').eq(0);
+        const $deleteButton = $card.find('button').eq(1);
+
+        const $withdrawnInput = $card.find('input').eq(0);
+        const $exchangedInput = $card.find('input').eq(1);
+
+        $editButton.on('click', () => {
+            // Edit the card.
         });
-    
-        $withdrawalHighEndHeader.on('click', () => {
-            closeAllSubmenus();
-            $withdrawalHighEnd.toggle();
+
+        $deleteButton.on('click', () => {
+            // Delete the card.
         });
-    
-        $exchangeFeesHeader.on('click', () => {
-            closeAllSubmenus();
-            $exchangeFees.toggle();
+
+        $withdrawnInput.on('change', () => {
+            // Update the value.
         });
-    
-        $otherFeesHeader.on('click', () => {
-            closeAllSubmenus();
-            $otherFees.toggle();
-        });
-    
-        $card.on('click', 'button', function() {
-            $card.toggleClass('card-flipped');
+
+        $exchangedInput.on('change', () => {
+            // Update the value.
         });
     
         return $card;
+    }
+
+    renderPopUp() {
+        const $popUp = $(POP_UP);
+
+        return $popUp;
+    }
+
+    renderDeleteDialog() {
+        const $deleteDialog = $(DELETE_DIALOG);
+
+        return $deleteDialog;
     }
 }
