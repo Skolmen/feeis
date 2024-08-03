@@ -313,3 +313,20 @@ nav > ul > li > a {
     border-radius: 5px;
     font-size: 15px;
 }
+
+.new-card-button {
+    position: fixed;
+    bottom: 90px;
+    right: calc(50% - 50px);
+    padding: 10px 15px;
+    border: 2px solid black;
+    background-color: white;
+    cursor: pointer;
+    border-radius: 90px;
+    font-size: 25px;
+    height: 55px;
+    width: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

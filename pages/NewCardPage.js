@@ -3,60 +3,7 @@ import { CLASSES, IDS } from '../constants/selectors.js';
 
 const PAGE = `
     <div class="${CLASSES.PAGE}" id="${IDS.NEW_CARD_PAGE}">
-
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdf
-            sdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfsdgfasdfhejsan!
-            
+        
     </div>
 `;
 

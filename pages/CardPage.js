@@ -1,5 +1,6 @@
 import { CLASSES, DOM_SELECTORS, IDS } from '../constants/selectors.js';
 import { Page } from '../components/Page.js';
+import CardManager from '../objects/CardManager.js';
 
 const PAGE = `
     <div class="${CLASSES.PAGE}" id="${IDS.CARD_PAGE}">
@@ -8,6 +9,10 @@ const PAGE = `
 
         <div class="${CLASSES.CARD_LIST}">
 
+        </div>
+
+        <div class="${CLASSES.NEW_CARD_BUTTON}" id="${IDS.NEW_CARD_BUTTON}">
+            ➕
         </div>
 
     </div>
@@ -115,6 +120,20 @@ const DIALOG_EDIT_CARD = `
     </div>
 `;
 
+const DIALOG_NEW_CARD = `
+    <div class="${CLASSES.DIALOG_CONTENT_NEW_CARD}">
+        <p>Choose a new pre-defined card or create a new one.</p>
+        <label>Pre-defined cards</label>
+        <select>
+
+        </select>
+        <div>
+            <button>Add pre-defined</button>
+            <button>Create own card</button>
+        </div>
+    </div>
+`;
+
 const DIALOG_DELETE_CARD = `
     <div class="${CLASSES.DIALOG_CONTENT_DELETE_CARD}">
         <p>Are you sure you want to delete this card?</p>
@@ -138,6 +157,8 @@ export class CardPage extends Page {
         this.$editDialog = null;
 
         this.$deleteDialog = null;
+
+        this.$newCardDialog = null;
     } 
 
     init() {
@@ -148,9 +169,19 @@ export class CardPage extends Page {
 
         this.$deleteDialog = this._buildDeleteDialog();
 
+        this.$newCardDialog = this._buildNewCardDialog();
+
+        const $newCardButton = this.$element.find(DOM_SELECTORS.NEW_CARD_BUTTON);
+        
+        $newCardButton.on('click', () => {
+            this.showNewCardDialog();
+        });
+
         this.$element.append(this.$editDialog);
 
         this.$element.append(this.$deleteDialog);
+
+        this.$element.append(this.$newCardDialog);
 
         this.$element.find(DOM_SELECTORS.CARD_LIST).append($card);
 
@@ -247,6 +278,38 @@ export class CardPage extends Page {
         return $dialog;
     }
 
+    _buildNewCardDialog() {
+        const $dialog = this._buildDialog();
+
+        const heading = 'New Card';
+
+        $dialog.find(DOM_SELECTORS.DIALOG_HEADER).find('h2').text(heading);
+
+        $dialog.find(DOM_SELECTORS.DIALOG_CONTENT).append(DIALOG_NEW_CARD);
+
+        const $addPredefinedButton = $dialog.find('button').eq(0);
+        const $createOwnCardButton = $dialog.find('button').eq(1);
+
+        $addPredefinedButton.on('click', () => {
+            // Add the predefined card.
+            console.log('Add predefined card');
+        });
+
+        $createOwnCardButton.on('click', () => {
+            // Add the own card.
+            console.log('Create own card');
+        });
+
+        const $select = $dialog.find('select');
+
+        // Add the predefined cards to the select.
+        CardManager.getPreDefinedCards().forEach(card => {
+            $select.append(`<option value="${card.key}">${card.name}</option>`);
+        });
+
+        return $dialog;
+    }
+
     showEditDialog(card) {
         // Show the edit dialog.
         this.$editDialog.show();
@@ -259,6 +322,11 @@ export class CardPage extends Page {
         this.$deleteDialog.show();
 
         // Populate the dialog with data to delete the card.
+    }
+
+    showNewCardDialog() {
+        // Show the new card dialog.
+        this.$newCardDialog.show();
     }
 
 }

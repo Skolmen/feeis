@@ -9,6 +9,7 @@ export const IDS = {
     COMPARE_WITHDRAWAL: 'compare-withdrawal',
     COMPARE_EXCHANGE: 'compare-exchange',
     WEEKEND_CHECKBOX: 'weekend-checkbox',
+    NEW_CARD_BUTTON: 'new-card-button',
 }
 
 export const CLASSES = {
@@ -33,6 +34,7 @@ export const CLASSES = {
     DIALOG_CONTENT_DELETE_CARD: 'dialog-content-delete-card',
     DIALOG_CONTENT_NEW_CARD: 'dialog-content-new-card',
     DELETE_CARD_POPUP: 'delete-card-popup',
+    NEW_CARD_BUTTON: 'new-card-button',
 }
 
 /**
