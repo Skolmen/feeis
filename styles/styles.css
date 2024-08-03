@@ -244,7 +244,7 @@ nav > ul > li > a {
     text-align: center;
 } 
 
-.popup {
+.dialog-overlay {
     position: fixed;
     z-index: 1;
     left: 0;
@@ -253,10 +253,10 @@ nav > ul > li > a {
     height: 100%;
     overflow: auto;
     background-color: rgba(0,0,0,0.4);
-    /* display: none; */
+    display: none;
 }
 
-.popup-content {
+.dialog-box {
     background-color: #f4f4f4;
     margin: 10% auto;
     padding: 20px;
@@ -266,31 +266,50 @@ nav > ul > li > a {
     font-size: 20px;
 }
 
+.dialog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-.popup-content > span > input,
-.popup-content > span > span > input {
+.dialog-content-edit-card > span > input,
+.dialog-content-edit-card > span > span > input {
     font-size: 18px;
     padding: 5px;
 }
 
-.popup-content > span > span > input {
+.dialog-content-edit-card > span > span > input {
     width: 80%;
 }
 
-.popup-content > span {
+.dialog-content-edit-card > span {
     display: flex;
     flex-direction: column;
     margin-top: 5px;
     width: 100%;
 }
 
-.popup-close {
+.dialog-close {
     color: red;
     float: right;
     font-size: 28px;
     font-weight: bold;
+    width: 40px;
+    text-align: right;
 }
 
-.delete-card-popup > div:nth-child(2) {
-    background-color: red !important;
+.dialog-content-delete-card > div {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 20px;
+}
+
+.dialog-content-delete-card > div > button {
+    padding: 10px 15px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 15px;
 }

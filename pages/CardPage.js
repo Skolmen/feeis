@@ -13,106 +13,114 @@ const PAGE = `
     </div>
 `;
 
-const POP_UP = `
-    <div class="${CLASSES.POPUP}">
-        <div class="${CLASSES.POPUP_CONTENT}">
-            <div class="${CLASSES.POPUP_CLOSE}">X</div>
-            <h1>Edit Card</h1>
-            <span>
-                <label>Card Name</label>
-                <input type="text" value="Revolut">
-            </span>
-            <span>
-                <label>Withdrawn</label>
-                <span>
-                    <input type="number" value="0">
-                    <span>HOM</span>
-                </span>
-            </span>
-            <span>
-                <label>Exchanged</label>
-                <span>
-                    <input type="number" value="0">
-                    <span>HOM</span>
-                </span>
-            </span>
-            <span>
-                <label>Wihdrawal Fee Low End</label>
-                <span>
-                    <input type="number" value="0">
-                    <span>%</span>
-                </span>
-            </span>
-            <span>
-                <label>Wihdrawal Fee Low Minimum</label>
-                <span>
-                    <input type="number" value="0">
-                    <span>HOM</span>
-                </span>
-            </span>
-            <span>
-                <label>Max Withdrawal Low</label>
-                <span>
-                    <input type="number" value="0">
-                    <span>HOM</span>
-                </span>
-            </span>
-            <span>
-                <label>Withdrawal High End</label>
-                <span>
-                    <input type="number" value="0">
-                    <span>%</span>
-                </span>
-            </span>
-            <span>
-                <label>Withdrawal Fee High Minimum</label>
-                <span>
-                    <input type="number" value="0">
-                    <span>HOM</span>
-                </span>
-            </span>
-            <span>
-                <label>Exchange Fee Low End</label>
-                <span>
-                    <input type="number" value="0">
-                    <span>%</span>
-                </span>
-            </span>
-            <span>
-                <label>Max Exchange Low End</label>
-                <span>
-                    <input type="number" value="0">
-                    <span>HOM</span>
-                </span>
-            </span>
-            <span>
-                <label>Exchange Fee High End</label>
-                <span>
-                    <input type="number" value="0">
-                    <span>%</span>
-                </span>
-            </span>
-            <span>
-                <label>Weekend Exchange Fee</label>
-                <span>
-                    <input type="number" value="0">
-                    <span>%</span>
-                </span>
-            </span>
+const DIALOG_TEMPLATE = `
+    <div class="${CLASSES.DIALOG_OVERLAY}">
+        <div class="${CLASSES.DIALOG_BOX}">
+            <div class="${CLASSES.DIALOG_HEADER}">
+                <h2>
+                
+                </h2>
+                <div class="${CLASSES.DIALOG_CLOSE}">X</div>
+            </div>
+            <div class="${CLASSES.DIALOG_CONTENT}">
+
+            </div>
         </div>
     </div>
 `;
 
-const DELETE_DIALOG = `
-    <div class="${CLASSES.POPUP}">
-        <div class="${CLASSES.POPUP_CONTENT} ${CLASSES.DELETE_CARD_POPUP}">
-            <div class="${CLASSES.POPUP_CLOSE}">X</div>
-            <h2>Delete Card</h2>
-            <p>Are you sure you want to delete this card?</p>
-            <div>
-                <button>Yes</button>
-                <button>No</button>
-            </div>
+const DIALOG_EDIT_CARD = `
+    <div class="${CLASSES.DIALOG_CONTENT_EDIT_CARD}">
+        <span>
+            <label>Card Name</label>
+            <input type="text" value="Revolut">
+        </span>
+        <span>
+            <label>Withdrawn</label>
+            <span>
+                <input type="number" value="0">
+                <span>HOM</span>
+            </span>
+        </span>
+        <span>
+            <label>Exchanged</label>
+            <span>
+                <input type="number" value="0">
+                <span>HOM</span>
+            </span>
+        </span>
+        <span>
+            <label>Wihdrawal Fee Low End</label>
+            <span>
+                <input type="number" value="0">
+                <span>%</span>
+            </span>
+        </span>
+        <span>
+            <label>Wihdrawal Fee Low Minimum</label>
+            <span>
+                <input type="number" value="0">
+                <span>HOM</span>
+            </span>
+        </span>
+        <span>
+            <label>Max Withdrawal Low</label>
+            <span>
+                <input type="number" value="0">
+                <span>HOM</span>
+            </span>
+        </span>
+        <span>
+            <label>Withdrawal High End</label>
+            <span>
+                <input type="number" value="0">
+                <span>%</span>
+            </span>
+        </span>
+        <span>
+            <label>Withdrawal Fee High Minimum</label>
+            <span>
+                <input type="number" value="0">
+                <span>HOM</span>
+            </span>
+        </span>
+        <span>
+            <label>Exchange Fee Low End</label>
+            <span>
+                <input type="number" value="0">
+                <span>%</span>
+            </span>
+        </span>
+        <span>
+            <label>Max Exchange Low End</label>
+            <span>
+                <input type="number" value="0">
+                <span>HOM</span>
+            </span>
+        </span>
+        <span>
+            <label>Exchange Fee High End</label>
+            <span>
+                <input type="number" value="0">
+                <span>%</span>
+            </span>
+        </span>
+        <span>
+            <label>Weekend Exchange Fee</label>
+            <span>
+                <input type="number" value="0">
+                <span>%</span>
+            </span>
+        </span>
+    </div>
+`;
+
+const DIALOG_DELETE_CARD = `
+    <div class="${CLASSES.DIALOG_CONTENT_DELETE_CARD}">
+        <p>Are you sure you want to delete this card?</p>
+        <div>
+            <button>Yes</button>
+            <button>No</button>
         </div>
     </div>
 `;
@@ -126,21 +134,25 @@ export class CardPage extends Page {
     constructor () {
         super();    
         this.$element = $(PAGE);
+
+        this.$editDialog = null;
+
+        this.$deleteDialog = null;
     } 
 
     init() {
         // Add a card to the page.
         const $card = this.renderCard();
 
-        const $popUp = this.renderPopUp();
+        this.$editDialog = this._buildEditDialog();
 
-        const $deleteDialog = this.renderDeleteDialog();
+        this.$deleteDialog = this._buildDeleteDialog();
+
+        this.$element.append(this.$editDialog);
+
+        this.$element.append(this.$deleteDialog);
 
         this.$element.find(DOM_SELECTORS.CARD_LIST).append($card);
-
-        this.$element.append($popUp);
-
-        this.$element.append($deleteDialog);
 
         return this;
     }
@@ -183,11 +195,11 @@ export class CardPage extends Page {
         const $exchangedInput = $card.find('input').eq(1);
 
         $editButton.on('click', () => {
-            // Edit the card.
+            this.showEditDialog(card);
         });
 
         $deleteButton.on('click', () => {
-            // Delete the card.
+            this.showDeleteDialog(card);
         });
 
         $withdrawnInput.on('change', () => {
@@ -201,15 +213,52 @@ export class CardPage extends Page {
         return $card;
     }
 
-    renderPopUp() {
-        const $popUp = $(POP_UP);
+    _buildDialog() {
+        const $dialog = $(DIALOG_TEMPLATE);
+        
+        $dialog.find(DOM_SELECTORS.DIALOG_CLOSE).on('click', () => {
+            $dialog.hide();
+        });
 
-        return $popUp;
+        return $dialog;
     }
 
-    renderDeleteDialog() {
-        const $deleteDialog = $(DELETE_DIALOG);
+    _buildEditDialog() {
+        const $dialog = this._buildDialog();
 
-        return $deleteDialog;
+        const heading = 'Edit Card';
+
+        $dialog.find(DOM_SELECTORS.DIALOG_HEADER).find('h2').text(heading);
+
+        $dialog.find(DOM_SELECTORS.DIALOG_CONTENT).append(DIALOG_EDIT_CARD);
+
+        return $dialog;
     }
+
+    _buildDeleteDialog() {
+        const $dialog = this._buildDialog();
+
+        const heading = 'Delete Card';
+
+        $dialog.find(DOM_SELECTORS.DIALOG_HEADER).find('h2').text(heading);
+
+        $dialog.find(DOM_SELECTORS.DIALOG_CONTENT).append(DIALOG_DELETE_CARD);
+
+        return $dialog;
+    }
+
+    showEditDialog(card) {
+        // Show the edit dialog.
+        this.$editDialog.show();
+
+        // Populate the dialog with the card data.
+    } 
+
+    showDeleteDialog(card) {
+        // Show the delete dialog.
+        this.$deleteDialog.show();
+
+        // Populate the dialog with data to delete the card.
+    }
+
 }

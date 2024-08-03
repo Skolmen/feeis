@@ -24,9 +24,14 @@ export const CLASSES = {
     CARD_MIDDLE: 'card-middle',
     CARD_BOTTOM: 'card-bottom',
     WEEKEND_CHECKBOX: 'weekend-checkbox',
-    POPUP: 'popup',
-    POPUP_CONTENT: 'popup-content',
-    POPUP_CLOSE: 'popup-close',
+    DIALOG_OVERLAY: 'dialog-overlay',
+    DIALOG_BOX: 'dialog-box',
+    DIALOG_CONTENT: 'dialog-content',
+    DIALOG_CLOSE: 'dialog-close',
+    DIALOG_HEADER: 'dialog-header',
+    DIALOG_CONTENT_EDIT_CARD: 'dialog-content-edit-card',
+    DIALOG_CONTENT_DELETE_CARD: 'dialog-content-delete-card',
+    DIALOG_CONTENT_NEW_CARD: 'dialog-content-new-card',
     DELETE_CARD_POPUP: 'delete-card-popup',
 }
 
